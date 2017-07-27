@@ -7,7 +7,7 @@
     </div>
     <br>
     <div>
-        <ngx-datatable class="material" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarV]="false" (activate)="onActivate($event)" [sorts]="[{prop: 'FullName', dir: 'desc'},{prop: 'Photo', dir: 'desc'},{prop: 'Average_Grade', dir: 'desc'}]">
+        <ngx-datatable class="material" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="60" [scrollbarV]="false" (activate)="onActivate($event)" [sorts]="[{prop: 'FullName', dir: 'desc'},{prop: 'Photo', dir: 'desc'},{prop: 'Average_Grade', dir: 'desc'}]">
 
             <ngx-datatable-column name="FullName">
                 <ng-template let-row="row" ngx-datatable-cell-template>
@@ -16,7 +16,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Photo">
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    <img width="40px" height="40px" src="./../assets/{{row.photo}}">
+                    <img width="20px" height="20px" src="./../../assets/{{row.photo}}">
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Average_Grade">
@@ -44,7 +44,13 @@
 </div>
 
 <div class="row" *ngIf="!enable">
-    <ngx-datatable [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" (activate)="onActivate($event)" [scrollbarV]="false" [sorts]="[{prop: 'FullName', dir: 'desc'},{prop: 'Photo', dir: 'desc'},{prop: 'Average_Grade', dir: 'desc'}]">
+    <div>
+        <md-radio-group>
+            <md-radio-button value="1" (click)="setValue()">Full View</md-radio-button>
+            <md-radio-button value="2" (click)="setValue()">Compact View</md-radio-button>
+        </md-radio-group>
+    </div>
+    <ngx-datatable class="material"  [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="60" (activate)="onActivate($event)" [scrollbarV]="false" [sorts]="[{prop: 'FullName', dir: 'desc'},{prop: 'Photo', dir: 'desc'},{prop: 'Average_Grade', dir: 'desc'}]">
 
         <ngx-datatable-column name="FullName">
             <ng-template let-row="row" ngx-datatable-cell-template>
@@ -53,7 +59,7 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Photo">
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <img width="50px" height="50px" src="./../assets/{{row.photo}}">
+                <img width="30px" height="30px" src="./../../assets/{{row.photo}}">
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Average Grade">

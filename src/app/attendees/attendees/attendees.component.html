@@ -22,7 +22,7 @@
             <tr *ngFor="let item of attendee" (click)="onSelect(attendee)" [class.selected]="attendee === selectedAttendee">
                 <td><span class="badge">{{item.id}}</span></td>
                 <td><span>{{item.firstName +" " +item.lastName}}</span></td>
-                <td><span><img width="20px" height="20px" src="./../../assets/{{item.photo}}"></span></td>
+                <td><span><img width="20px" height="20px" src="./assets/{{item.photo}}"></span></td>
                 <td><span>{{item.hw1}}</span></td>
                 <td><span>{{item.hw2}}</span></td>
                 <td><span>{{item.hw3}}</span></td>

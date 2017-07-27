@@ -7,7 +7,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-    title = 'Leaderboard';
+  title = 'Leaderboard';
   navTitle = 'Menu'
   constructor() { }
 }

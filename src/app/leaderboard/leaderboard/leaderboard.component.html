@@ -1,0 +1,65 @@
+<div class="row" *ngIf="enable">
+    <div>
+        <md-radio-group>
+            <md-radio-button value="1" (click)="setValue()">Full View</md-radio-button>
+            <md-radio-button value="2" (click)="setValue()">Compact View</md-radio-button>
+        </md-radio-group>
+    </div>
+    <br>
+    <div>
+        <ngx-datatable class="material" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarV]="false" (activate)="onActivate($event)" [sorts]="[{prop: 'FullName', dir: 'desc'},{prop: 'Photo', dir: 'desc'},{prop: 'Average_Grade', dir: 'desc'}]">
+
+            <ngx-datatable-column name="FullName">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.firstName +" " +row.lastName}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Photo">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <img width="40px" height="40px" src="./../assets/{{row.photo}}">
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Average_Grade">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <p [ngClass]="{'contentAvg':avg(row) >= 3}">{{(row.hw1+row.hw2+row.hw3+row.hw4+row.hw5)/5}}</p>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="# of Delivered Homeworks">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <p [ngClass]="{'contentDel':deliv(row) < 5}"> {{row | delivered}}</p>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="# of Missing Homeworks">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <p [ngClass]="{'contentMiss':miss(row) > 0}">{{row | missed}}</p>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Last time updated">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.lastUpdateDate | date: 'dd/MM/yyyy'}}
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+</div>
+
+<div class="row" *ngIf="!enable">
+    <ngx-datatable [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" (activate)="onActivate($event)" [scrollbarV]="false" [sorts]="[{prop: 'FullName', dir: 'desc'},{prop: 'Photo', dir: 'desc'},{prop: 'Average_Grade', dir: 'desc'}]">
+
+        <ngx-datatable-column name="FullName">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.firstName +" " +row.lastName}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Photo">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <img width="50px" height="50px" src="./../assets/{{row.photo}}">
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Average Grade">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <p [ngClass]="{'contentAvg':avg(row) >= 3}">{{(row.hw1+row.hw2+row.hw3+row.hw4+row.hw5)/5}}</p>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>

@@ -1,0 +1,69 @@
+<div class="row" *ngIf="attendee">
+    <h1 *ngIf="attendee.firstName && attendee.lastName">{{attendee.firstName+" "+attendee.lastName}}</h1>
+    <form (ngSubmit)="onSubmit()" #attendeesForm="ngForm">
+        <div class="form-group">
+            <label for="firstName">FirstName</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="attendee.firstName" required #firstName="ngModel">
+            <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+                Please write a First Name
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">LastName</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="attendee.lastName" required #lastName="ngModel">
+            <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+                Please write a Last Name
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="photo">Foto</label>
+            <img width="20px" height="20px" src="./../assets/{{attendee.photo}}">
+        </div>
+        <div class="form-group">
+            <label for="hw1">Home Work #1</label>
+            <input type="number" class="form-control" id="hw1" name="hw1" min="0" max="5" [(ngModel)]="attendee.hw1" required #hw1="ngModel">
+            <div [hidden]="hw1.valid || hw1.pristine" class="alert alert-danger">
+                Please write a Home Work #1 grade
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="hw2">Home Work #2</label>
+            <input type="number" class="form-control" id="hw2" name="hw2" min="0" max="5" [(ngModel)]="attendee.hw2" required #hw2="ngModel">
+            <div [hidden]="hw2.valid || hw2.pristine" class="alert alert-danger">
+                Please write a Home Work #1 grade
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="hw3">Home Work #2</label>
+            <input type="number" class="form-control" id="hw3" name="hw3" min="0" max="5" [(ngModel)]="attendee.hw3" required #hw3="ngModel">
+            <div [hidden]="hw3.valid || hw3.pristine" class="alert alert-danger">
+                Please write a Home Work #2 grade
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="hw4">Home Work #4</label>
+            <input type="number" class="form-control" id="hw4" name="hw4" min="0" max="5" [(ngModel)]="attendee.hw4" required #hw4="ngModel">
+            <div [hidden]="hw4.valid || hw4.pristine" class="alert alert-danger">
+                Please write a Home Work #4 grade
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="hw5">Home Work #5</label>
+            <input type="number" class="form-control" id="hw5" name="hw5" min="0" max="5" [(ngModel)]="attendee.hw5" required #hw5="ngModel">
+            <div [hidden]="hw5.valid || hw5.pristine" class="alert alert-danger">
+                Please write a Home Work #5 grade
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lastUpdateDate">last Update Date</label>
+            <input type="text" disabled="true" class="form-control" id="lastUpdateDate" name="lastUpdateDate" [(ngModel)]="attendee.lastUpdateDate" required>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!attendeesForm.form.valid">Save</button>
+        <button type="button" class="btn btn-default" routerLink="/attendees">Back</button>
+    </form>
+</div>
